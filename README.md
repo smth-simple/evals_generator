@@ -19,7 +19,9 @@ evals_generator/
 │   └── ... (other scripts)
 ├── viz_output/                     # Generated PNGs and CSVs appear here
 └── report_output/                  # JSON states and Final DOCX appear here
-🚀 Setup & Installation
+```
+
+# 🚀 Setup & Installation
 1. Prerequisites
 Python 3.8+
 
