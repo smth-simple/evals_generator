@@ -1,0 +1,24 @@
+{
+  "report_title": "Test Analysis Report",
+  "process_version": "2.1",
+  
+  "dataset_path": "evals_data.csv",
+  "viz_output_dir": "viz_output",
+  "report_output_dir": "report_output",
+
+  "viz_scripts_dir": "visualization_scripts",
+  "prompts_file": "configurable_prompts_v2.json",
+  "models_file": "models.json",
+  "features": {
+    "understanding_step": true,
+    "identifying_step": true,
+    "rollout_variants": 1, 
+    "combine_check_step": true,
+    "save_intermediate_outputs": true
+  },
+  "dataset_processing": {
+    "chunk_size": 100000,
+    "sample_rows_for_analysis": 1000,
+    "include_correlations": true
+  }
+}

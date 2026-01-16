@@ -1,0 +1,48 @@
+{
+  "identifying_global": {
+    "prompt": "You are a Lead Data Analyst. \n\n**TASK:**\nAnalyze the **Global Failure Patterns** for the specific model provided in the context (Base or Test).\n\n**INPUTS:**\n- `sample_data`: A random set of Major Failures for this model.\n\n**REQUIRED OUTPUT:**\n1. **Dominant Failure Mode:** What is the #1 way this model fails globally? (e.g., 'It hallucinates constantly' or 'It refuses to answer').\n2. **Axis Analysis:** Which metric (Instruction Following, Truthfulness, Localization) suffers the most?\n3. **Recurring Themes:** Cite 2-3 specific `task_id` examples from the samples that illustrate these global issues.\n\n**STYLE:**\nBe direct. Do not hedge. Focus strictly on the model currently under analysis."
+  },
+  "identifying_region_loop": {
+    "prompt": "You are a Forensic Data Analyst specializing in Linguistics. \n\n**TASK:**\nConduct a rigorous failure analysis for the **Specific Region** provided.\n\n**INPUT DATA:**\n- `sample_data`: Stratified samples showing the Top Failure Categories for each language.\n\n**REQUIRED OUTPUT:**\n1. **Regional Synthesis:** What represents the 'Signature Failure' of this region? (e.g., 'Arabic dialects are consistently ignored across EG, SA, and AE').\n\n2. **Per-Language Forensic Report:**\n   For EACH language code in the data, provide:\n   - **Top Failure Category:** (e.g. Instruction Following).\n   - **Primary Failure Pattern:** Describe the specific *way* it fails (e.g. 'Ignores negative constraints').\n   - **Evidence Locker:** Cite **3 distinct examples** using this exact format:\n     * `[Task ID: <insert_id>]`: <Quote the justification specifically describing the error>.\n     * `[Task ID: <insert_id>]`: <Quote the justification>.\n   - **Secondary Failure Pattern:** (If applicable) Describe another cluster of errors.\n\n**STYLE:**\nBe extremely precise. Do not summarize vaguely. Use the Task IDs."
+  },
+  "identifying_lmarena": {
+    "prompt": "You are a Domain Expert (Legal, Coding, STEM). \n\n**TASK:**\nAnalyze the model's performance on **Hard Prompts & LMArena Categories**.\n\n**INPUTS:**\n- `sample_data`: Failures filtered for 'Hard Prompts', 'Complexity', and 'Occupational Categories'.\n\n**REQUIRED OUTPUT:**\n1. **Complexity Handling:** How does the model fail when prompts get long or complex?\n2. **Domain Failures:** Look at the `occupational_category` (e.g. Legal, Medical). Are there dangerous failures in high-risk domains?\n3. **Hard Prompt Performance:** Cite a specific 'Hard Prompt' example where the model collapsed."
+  },
+  "identifying_h2h": {
+    "prompt": "You are a Comparative Linguist & Product Strategist. \n\n**TASK:**\nAnalyze why users prefer one model over the other in **{language_name}**, despite the error rates provided.\n\n**CONTEXT:**\n- Model A Major Error Rate: {a_error}%\n- Model B Major Error Rate: {b_error}%\n- Model A Win Rate: {a_win}%\n- Model B Win Rate: {b_win}%\n\n**INPUT DATA:**\n- `sample_data`: A set of examples where Model A won, and a set where Model B won.\n\n**REQUIRED OUTPUT:**\n1. **The 'Win' Driver:** Why does Model B win? (e.g. \"Model B is winning on style/tone even when accuracy is similar\" or \"Model A is too robotic\").\n2. **The 'Loss' Driver:** When Model A *does* win, what did Model B get wrong?\n3. **Evidence:** Cite specific `task_id` examples from the samples to support your hypothesis.\n\n**STYLE:**\nCompare and contrast. Focus on the *user experience* difference."
+  },
+  "synthesis_prompt": {
+    "dictionary": "# DATA SOURCE DICTIONARY\n- **Viz 00 (Global):** The 'North Star'. Positive Net Delta = Test Model is better. Likert > 4 = Test Preferred. \n- **Viz 09-12 (Heatmaps):** Subcategory failures. Use this to pinpoint IF vs TF issues in specific regions.\n- **Viz 16 (Quality Score):** The 'Why'. Shows exactly how much IF, TF, and Localization contributed to the score.\n- **Viz 18/19 (Length):** Divergence. Blue/Right = Verbose, Red/Left = Concise. \n- **Viz 15 (Polish):** Minor Errors. High negative delta here means Test is just 'cleaner' (formatting, typos), not necessarily smarter.\n- **Identifying Output:** Contains the 'Human Evidence' (Task IDs, quotes, specific failure descriptions).",
+    "prompt": "You are a Principal Investigator combining Forensic Data with Human Intelligence.\n\n**OBJECTIVE:**\nProduce a 'Unified Field Theory' of the model comparison. You must look past the averages and find the *structural patterns* that define the models.\n\n**CRITICAL INSTRUCTION: THE EVIDENCE BRIDGE**\nFor every major claim you make, you must provide TWO pieces of evidence:\n1. **Quant:** A number from the Viz tables (e.g., \"Viz 16 shows IF improved by +4.2%\").\n2. **Qual:** A specific example from the Identifying step (e.g., \"This is proven by Task ID 1092 where Base Model failed to...\").\n\n**REQUIRED OUTPUT SECTIONS:**\n\n**1. The 'Capability Gap' Analysis**\n- Compare **Generative Tasks** (Creative Writing) vs **Reference-Based Tasks** (QA, Summarization) using Viz 13/14.\n- *Question:* Does the Test Model win on style (Generative) but lose on facts (Reference)?\n- *Evidence:* Cite a 'Hard Prompt' failure example from the Identifying text to prove the limit of its intelligence.\n\n**2. Behavioral Archetypes (Cluster Analysis)**\nInstead of listing regions, group them into **Behavioral Clusters**. Examples of clusters you might find:\n- *Cluster A: 'The Surface Wins'* (High Win Rate but High Major Errors). Which regions fit here? Why? (Check Viz 17 Intensity).\n- *Cluster B: 'The Localization Failures'* (Low Win Rate due to specific cultural/language misses). \n- *Cluster C: 'The Formatting Victories'* (Wins driven purely by Viz 15 Minor Errors/Polish).\n\n**3. The 'Style vs. Substance' Audit**\n- Analyze the **Length Bias** (Viz 18/19). Is the Test Model winning simply because it is shorter/longer?\n- Cross-reference this with **Instruction Following** (Viz 16). Did it actually follow the length constraints better, or is it just lazy?\n\n**4. Regional Root Cause Deep Dive**\n- Pick the **2 most problematic regions**.\n- Diagnose the *exact* subcategory driver (e.g., \"In MENA, it is not just 'Translation', it is specifically 'Dialect Mismatch' as seen in Viz 11\").\n- Quote the *specific justification* from a Task ID in that region to illustrate the pain point.\n\n**5. Strategic Verdict & Improvements**\n- Define the **Persona** of the Test Model (e.g., \"The Over-Cautious Editor\" or \"The Hallucinating Poet\").\n- Recommendation: If we had budget for 1000 new fine-tuning samples, where should they go? (Be specific: \"Spanish Instruction Following negative constraints\")."
+  },
+  "report_sections": [
+    {
+      "section_id": "exec_summary",
+      "title": "1. Executive Summary",
+      "prompt": "You are a Principal Product Strategist. Write the **Executive Summary**.\n\n**INPUTS:**\n- `strategic_brief`: The Synthesis Output.\n- `available_figures`: List of figure filenames.\n\n**STRICT FORMATTING:**\n1. **Figures:** Use tags like `[[FIGURE: viz_00_...]]`. Do NOT write 'Figure 1' manually; the system will number them.\n2. **References:** To refer to a chart in text, write `(see viz_00)` or `(see viz_18)`. The system will convert this to `(see Figure X)`.\n3. **Tone:** Professional, objective, evidence-based.\n\n**REQUIRED CONTENT:**\n1. **Verdict:** Who won?\n2. **Visual:** `[[FIGURE: viz_00_language__overall_deltas__pref__mean_.png]]`\n3. **Drivers:** Why? (Cite viz_17 or viz_18).\n4. **Risks:** Where did Test Model regress?"
+    },
+    {
+      "section_id": "model_comparison_overview",
+      "title": "2. Model Comparison Overview",
+      "prompt": "Write Section 2.\n\n**INPUTS:** `data_tables`, `available_figures`.\n\n**FORMATTING:**\n- Insert `[[FIGURE: viz_16_composite_score.png]]`\n- Insert `[[FIGURE: viz_15_minor_error_deltas.png]]`\n\n**CONTENT:**\n2.1 Overall Comparison (Quality Scores)\n2.2 Prompt Categories (`[[FIGURE: viz_13_prompt_cat_comparison.png]]`)\n2.3 Failure Patterns (`[[FIGURE: viz_09_tf_subcat_by_model_region.png]]`)"
+    },
+    {
+      "section_id": "language_specific_analysis",
+      "title": "3. Language-Specific Analysis",
+      "prompt": "Write Section 3.\n\n**FORMATTING:**\n- Insert `[[FIGURE: viz_00_language__overall_deltas__pref__mean_.png]]`\n- Insert `[[FIGURE: viz_20_likert_disparity_top_8.png]]`\n\n**CONTENT:**\n3.1 Regional Patterns\n3.2 Common Failures\n3.3 High Disagreement Areas"
+    },
+    {
+      "section_id": "lmarena_analysis",
+      "title": "4. LMArena-Focused Analysis",
+      "prompt": "Write Section 4.\n\n**FORMATTING:**\n- Insert `[[FIGURE: viz_14_lmarena_category_comparison.png]]`\n- Insert `[[FIGURE: viz_18_rl_tendency.png]]`\n\n**CONTENT:**\n4.1 LMArena Takeaways\n4.2 Hard Prompts\n4.3 Longer Queries"
+    },
+    {
+      "section_id": "recommendations",
+      "title": "5. Recommendations",
+      "prompt": "Write Section 5.\n\n**CONTENT:**\n1. Release Decision\n2. Training Roadmap\n3. Prompt Engineering"
+    }
+  ],
+  "combine_check_prompt": {
+    "prompt": "You are a Quality Assurance Editor. \n\n**TASK:**\nReview the generated report for consistency and formatting.\n\n**CHECKLIST:**\n1. Are the Win Rates in the Executive Summary consistent with the Data Tables?\n2. Are there any placeholders left (e.g. [INSERT TABLE])? If so, fill them or remove them.\n3. Does the tone remain objective?\n\n**OUTPUT:**\nReturn a short critique. If the report is good, just say 'VALIDATION PASSED'."
+  }
+}
